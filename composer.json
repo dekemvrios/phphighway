@@ -1,0 +1,13 @@
+{
+  "name": "solis/highway",
+  "autoload": {
+    "psr-4": {
+      "HighWay\\": "app/src/",
+      "Sample\\": "sample/src/"
+    }
+  },
+  "require": {
+    "solis/phpmagic": "3.1.0",
+    "slim/slim": "^3.0"
+  }
+}

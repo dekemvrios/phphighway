@@ -1,0 +1,42 @@
+[
+  {
+    "request": {
+      "uri": "/assinatura/get/",
+      "method": "GET",
+      "controller": {
+        "class": "Sample\\Classes\\Assinatura",
+        "method": "find"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/assinatura/put/",
+      "method": "POST",
+      "controller": {
+        "class": "Sample\\Classes\\Assinatura",
+        "method": "put"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/assinatura/del/",
+      "method": "DELETE",
+      "controller": {
+        "class": "Sample\\Classes\\Assinatura",
+        "method": "del"
+      }
+    },
+    "middleware": "auth",
+    "response": {
+      "sType": "withJson"
+    }
+  }
+]
