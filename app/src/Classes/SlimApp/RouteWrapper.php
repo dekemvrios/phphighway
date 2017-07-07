@@ -82,6 +82,38 @@ class RouteWrapper implements RouteWrapperContract
     }
 
     /**
+     * @return App
+     */
+    public function getApp()
+    {
+        return $this->app;
+    }
+
+    /**
+     * @param App $app
+     */
+    public function setApp($app)
+    {
+        $this->app = $app;
+    }
+
+    /**
+     * @return SlimMiddleware
+     */
+    public function getMiddleware()
+    {
+        return $this->middleware;
+    }
+
+    /**
+     * @param SlimMiddleware $middleware
+     */
+    public function setMiddleware($middleware)
+    {
+        $this->middleware = $middleware;
+    }
+
+    /**
      * @param SchemaEntryContract $route
      */
     public function post($route)

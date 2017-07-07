@@ -1,15 +1,10 @@
 <?php
-/**
- *  Example API call
- *  Create a new Client at database
- */
-$url = "http://localhost/solis/phpslimwrapper/sample/assinatura/del/";
 
-$ID = (isset($_GET['ID']) && $_GET['ID'] > 0 ? $_GET['ID'] : 2);
+$url = "http://localhost/solis/phphighway/sample/sample/del/";
 
-$data = array (
-    "ID" => $ID
-);
+$data = [
+    "randData" => uniqid(rand(), true),
+];
 
 // Data JSON
 $dataJson = json_encode($data);
@@ -22,17 +17,17 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
 curl_setopt($ch, CURLOPT_HEADER, false);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Authorization: l99IhVg9429yzv18QLF7GTJM6PUO8L3f',
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Authorization: 1471036882595f79abf16587.70188608',
     'Content-Type: application/json',
-    'Content-Length: ' . strlen($dataJson)
-));
+    'Content-Length: ' . strlen($dataJson),
+]);
 
 // execute the request
 $output = curl_exec($ch);
 
 // output the profile information - includes the header
-echo($output) . PHP_EOL;
+echo ($output) . PHP_EOL;
 
 // close curl resource to free up system resources
 curl_close($ch);

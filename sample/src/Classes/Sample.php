@@ -3,11 +3,11 @@
 namespace Sample\Classes;
 
 /**
- * Class Assinatura
+ * Class Sample
  *
  * @package Sample\Classes
  */
-class Assinatura
+class Sample
 {
     /**
      * find
@@ -26,8 +26,8 @@ class Assinatura
             'name'   => array_key_exists(
                 'name',
                 $aParams
-            ) ? $aParams['name'] : 'Assinatura',
-            'date'   => date("Y-m-d H:i:s")
+            ) ? $aParams['name'] : 'sample',
+            'date'   => date("Y-m-d H:i:s"),
         ];
     }
 
@@ -49,12 +49,12 @@ class Assinatura
             'name'   => array_key_exists(
                 'proDescricao',
                 $aParams
-            ) ? $aParams['proDescricao'] : 'Assinatura',
-            'obs'   => array_key_exists(
-                'proObservacao',
+            ) ? $aParams['proDescricao'] : 'sample',
+            'obs'    => array_key_exists(
+                'randData',
                 $aParams
-            ) ? $aParams['proObservacao'] : 'observacao',
-            'date'   => date("Y-m-d H:i:s")
+            ) ? $aParams['randData'] : 'sample',
+            'date'   => date("Y-m-d H:i:s"),
         ];
     }
 
@@ -73,10 +73,10 @@ class Assinatura
             'id'     => uniqid(rand()),
             'method' => 'del',
             'name'   => array_key_exists(
-                'ID',
+                'randData',
                 $aParams
-            ) ? $aParams['ID'] : 'Assinatura',
-            'date'   => date("Y-m-d H:i:s")
+            ) ? $aParams['randData'] : 'sample',
+            'date'   => date("Y-m-d H:i:s"),
         ];
     }
 

@@ -1,12 +1,22 @@
 {
   "name": "solis/highway",
+  "description": "HighWay is simple route engine structured by schemas",
+  "license": [
+    "GPL-3.0+",
+    "LGPL-3.0+"
+  ],
   "autoload": {
     "psr-4": {
-      "HighWay\\": "app/src/",
+      "HighWay\\": "app/src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Sample\\": "sample/src/"
     }
   },
   "require": {
+    "php": "^7.0",
     "solis/phpmagic": "3.1.0",
     "slim/slim": "^3.0"
   }

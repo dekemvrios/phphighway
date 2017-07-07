@@ -8,11 +8,11 @@ use Solis\Breaker\TException;
 try {
 
     $routes = json_decode(
-        file_get_contents('src/Routes/Assinatura.json'),
+        file_get_contents('src/Routes/sample.json'),
         true
     );
 
-    $middleware = require_once 'src/Api/middleware.php';
+    $middleware = require_once 'src/Includes/middleware.php';
 
     $app = SlimHighWay::make($routes, $middleware);
 

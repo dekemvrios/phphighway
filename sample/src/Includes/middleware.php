@@ -6,11 +6,14 @@ use Psr\Http\Message\ResponseInterface as Response;
 return [
     'auth' => function (Request $oRequest, Response $oResponse, $next) {
 
-        $sSecretKey = "l99IhVg9429yzv18QLF7GTJM6PUO8L3f";
+        $sSecretKey = "1471036882595f79abf16587.70188608";
 
         // $_SERVER variables get the IP and Name of the localhost server running
         $aWhitelistDomains = [
-            "127.0.0.1",  "localhost", "::1", $_SERVER["SERVER_NAME"]
+            "127.0.0.1",
+            "localhost",
+            "::1",
+            $_SERVER["SERVER_NAME"],
         ];
 
         $sRequestKey = $oRequest->getHeaderLine('Authorization');
@@ -22,8 +25,6 @@ return [
             return $oResponse
                 ->withJson(['status' => 403, 'reason' => "Auth failed"]);
         }
-
-        //$this->logger->notice("KEY: " . $sRequestKey);
 
         return !empty($next) ? $next($oRequest, $oResponse) : $oResponse->withJson(
             ['status' => 500, 'reason' => 'Internal Server Error']
