@@ -3,6 +3,8 @@
 namespace HighWay\Contracts;
 
 use HighWay\Contracts\Schema\SchemaEntryContract;
+use HighWay\Contracts\Schema\SchemaContract;
+use Solis\Breaker\TException;
 
 /**
  * Interface RouteWrapperContract
@@ -15,6 +17,18 @@ interface RouteWrapperContract
      * run
      */
     public function run();
+
+    /**
+     * @param string $jsonSchema
+     *
+     * @throws TException
+     */
+    public function compileRouteFromString($jsonSchema);
+
+    /**
+     * @param SchemaContract $schema
+     */
+    public function compileRouteFromSchema($schema);
 
     /**
      * @param SchemaEntryContract $route

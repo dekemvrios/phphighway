@@ -2,10 +2,12 @@
 
 namespace HighWay\Classes\SlimApp;
 
+use HighWay\Classes\RouteSchema\Schema;
 use HighWay\Contracts\Schema\SchemaContract;
 use HighWay\Contracts\Schema\SchemaEntryContract;
 use HighWay\Contracts\RouteWrapperContract;
 use Slim\App;
+use Solis\Breaker\TException;
 
 /**
  * Class RouteWrapper
@@ -52,30 +54,17 @@ class RouteWrapper implements RouteWrapperContract
      *
      * @return static
      */
-    public static function make($schema, $middleware = null)
+    public static function make($schema = null, $middleware = null)
     {
-        $instance = new static(new App, $middleware);
 
-        foreach ($schema->getSchemaEntry() as $route) {
+        $aConfig = $GLOBALS['aConfig'];
 
-            switch (strtoupper($route->getRequestEntry()->getMethod())) {
-                case 'GET':
-                    $instance->get($route);
+        $app = !is_null($aConfig) ? new App(['settings' => $aConfig]) : new App();
 
-                    break;
-                case 'POST':
-                    $instance->post($route);
+        $instance = new static($app, $middleware);
 
-                    break;
-                case 'DELETE':
-                    $instance->delete($route);
-
-                    break;
-                case 'PATCH':
-                    $instance->patch($route);
-
-                    break;
-            }
+        if (!empty($schema)) {
+            $instance->compileRouteFromSchema($schema);
         }
 
         return $instance;
@@ -103,6 +92,65 @@ class RouteWrapper implements RouteWrapperContract
     public function getMiddleware()
     {
         return $this->middleware;
+    }
+
+    /**
+     * @param string $jsonSchema
+     *
+     * @throws TException
+     */
+    public function compileRouteFromString($jsonSchema)
+    {
+
+        $arraySchema = json_decode($jsonSchema, true);
+        if (empty($arraySchema)) {
+            throw new TException(
+                __CLASS__,
+                __METHOD__,
+                'error decoding string json schema',
+                500
+            );
+        }
+
+        $schema = Schema::make($arraySchema);
+        if (empty($schema)) {
+            throw new TException(
+                __CLASS__,
+                __METHOD__,
+                'error creating route schema object',
+                500
+            );
+        }
+
+        $this->compileRouteFromSchema($schema);
+    }
+
+    /**
+     * @param SchemaContract $schema
+     */
+    public function compileRouteFromSchema($schema)
+    {
+        foreach ($schema->getSchemaEntry() as $route) {
+
+            switch (strtoupper($route->getRequestEntry()->getMethod())) {
+                case 'GET':
+                    $this->get($route);
+
+                    break;
+                case 'POST':
+                    $this->post($route);
+
+                    break;
+                case 'DELETE':
+                    $this->delete($route);
+
+                    break;
+                case 'PATCH':
+                    $this->patch($route);
+
+                    break;
+            }
+        }
     }
 
     /**

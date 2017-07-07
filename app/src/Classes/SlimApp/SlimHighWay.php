@@ -23,16 +23,19 @@ class SlimHighWay extends HighWayAbstract
      *
      * @throws TException
      */
-    public static function make($routes, $middleware = [])
+    public static function make($routes = null, $middleware = [])
     {
-        $schema = Schema::make($routes);
-        if (empty($schema)) {
-            throw new TException(
-                __CLASS__,
-                __METHOD__,
-                'error creating route schema',
-                500
-            );
+        $schema = null;
+        if (!empty($routes)) {
+            $schema = Schema::make($routes);
+            if (empty($schema)) {
+                throw new TException(
+                    __CLASS__,
+                    __METHOD__,
+                    'error creating route schema',
+                    500
+                );
+            }
         }
 
         $instance = new static(
