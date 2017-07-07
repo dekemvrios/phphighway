@@ -16,6 +16,8 @@ try {
 
     $app = SlimHighWay::make($routes, $middleware);
 
+    include_once 'src/Includes/dependencies.php';
+
     $app->run();
 
 } catch (TException $exception) {

@@ -26,6 +26,8 @@ return [
                 ->withJson(['status' => 403, 'reason' => "Auth failed"]);
         }
 
+        $this->logger->notice("KEY: " . $sRequestKey);
+
         return !empty($next) ? $next($oRequest, $oResponse) : $oResponse->withJson(
             ['status' => 500, 'reason' => 'Internal Server Error']
         );
