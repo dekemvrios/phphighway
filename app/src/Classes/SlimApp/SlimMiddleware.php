@@ -18,7 +18,7 @@ class SlimMiddleware
     /**
      * SlimMiddleware constructor.
      *
-     * @param $available
+     * @param array $available
      */
     public function __construct($available)
     {
@@ -27,6 +27,10 @@ class SlimMiddleware
 
     /**
      * make
+     *
+     * @param array $params
+     *
+     * @return static
      */
     public static function make($params)
     {
@@ -50,6 +54,8 @@ class SlimMiddleware
     }
 
     /**
+     * @param string $name
+     *
      * @return array|mixed
      */
     public function getEntry($name)

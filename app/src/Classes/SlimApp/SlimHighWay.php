@@ -41,7 +41,7 @@ class SlimHighWay extends HighWayAbstract
         $instance = new static(
             RouteWrapper::make(
                 $schema,
-                SlimMiddleware::make($middleware)
+                !empty($middleware) ? SlimMiddleware::make($middleware) : null
             ),
             $schema
         );

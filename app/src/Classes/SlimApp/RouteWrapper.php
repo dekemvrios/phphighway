@@ -42,8 +42,10 @@ class RouteWrapper implements RouteWrapperContract
      */
     protected function __construct($slim, $middleware = null)
     {
-        $this->app = $slim;
-        $this->middleware = $middleware;
+        $this->setApp($slim);
+        if (!empty($middleware)) {
+            $this->setMiddleware($middleware);
+        }
     }
 
     /**
@@ -92,6 +94,14 @@ class RouteWrapper implements RouteWrapperContract
     public function getMiddleware()
     {
         return $this->middleware;
+    }
+
+    /**
+     * @param SlimMiddleware $middleware
+     */
+    public function setMiddleware($middleware)
+    {
+        $this->middleware = $middleware;
     }
 
     /**
@@ -154,19 +164,11 @@ class RouteWrapper implements RouteWrapperContract
     }
 
     /**
-     * @param SlimMiddleware $middleware
-     */
-    public function setMiddleware($middleware)
-    {
-        $this->middleware = $middleware;
-    }
-
-    /**
      * @param SchemaEntryContract $route
      */
     public function post($route)
     {
-        SlimWrapper::___POST($this->app, $route, $this->middleware);
+        SlimWrapper::___POST($this->getApp(), $route, $this->getMiddleware());
     }
 
     /**
@@ -174,7 +176,7 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function delete($route)
     {
-        SlimWrapper::___POST($this->app, $route, $this->middleware);
+        SlimWrapper::___POST($this->getApp(), $route, $this->getMiddleware());
     }
 
     /**
@@ -182,7 +184,7 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function get($route)
     {
-        SlimWrapper::___GET($this->app, $route, $this->middleware);
+        SlimWrapper::___GET($this->getApp(), $route, $this->getMiddleware());
     }
 
     /**
@@ -190,6 +192,6 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function patch($route)
     {
-        SlimWrapper::___POST($this->app, $route, $this->middleware);
+        SlimWrapper::___POST($this->getApp(), $route, $this->getMiddleware());
     }
 }

@@ -3,17 +3,20 @@
 require '../vendor/autoload.php';
 
 use HighWay\Classes\SlimApp\SlimHighWay;
+use HighWay\Classes\SlimApp\SlimMiddleware;
 use Solis\Breaker\TException;
 
 try {
 
     include_once 'src/Includes/config.php';
 
-    $middleware = require_once 'src/Includes/middleware.php';
-
-    $app = SlimHighWay::make($routes = null, $middleware);
+    $app = SlimHighWay::make();
 
     include_once 'src/Includes/dependencies.php';
+
+    $middleware = require_once 'src/Includes/middleware.php';
+
+    $app->getWrapper()->setMiddleware(SlimMiddleware::make($middleware));
 
     $app->getWrapper()->compileRouteFromString(file_get_contents('src/Routes/sample.json'));
 
