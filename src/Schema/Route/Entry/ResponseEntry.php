@@ -1,8 +1,8 @@
 <?php
 
-namespace HighWay\Classes\RouteSchema;
+namespace HighWay\Schema\Route\Entry;
 
-use HighWay\Contracts\Schema\ResponseEntryContract;
+use HighWay\Schema\Route\Contracts\ResponseEntryContract;
 use Solis\Breaker\TException;
 
 /**

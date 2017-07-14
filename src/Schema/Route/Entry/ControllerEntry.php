@@ -1,8 +1,8 @@
 <?php
 
-namespace HighWay\Classes\RouteSchema;
+namespace HighWay\Schema\Route\Entry;
 
-use HighWay\Contracts\Schema\ControllerEntryContract;
+use HighWay\Schema\Route\Contracts\ControllerEntryContract;
 use Solis\Breaker\TException;
 
 /**
@@ -29,8 +29,10 @@ class ControllerEntry implements ControllerEntryContract
      * @param $class
      * @param $method
      */
-    public function __construct($class, $method)
-    {
+    public function __construct(
+        $class,
+        $method
+    ) {
         $this->setClass($class);
         $this->setMethod($method);
     }
@@ -44,7 +46,11 @@ class ControllerEntry implements ControllerEntryContract
      */
     public static function make($params)
     {
-        if (!array_key_exists('class', $params)) {
+        if (!array_key_exists(
+            'class',
+            $params
+        )
+        ) {
             throw new TException(
                 __CLASS__,
                 __METHOD__,
@@ -62,7 +68,11 @@ class ControllerEntry implements ControllerEntryContract
             );
         }
 
-        if (!array_key_exists('method', $params)) {
+        if (!array_key_exists(
+            'method',
+            $params
+        )
+        ) {
             throw new TException(
                 __CLASS__,
                 __METHOD__,
@@ -71,7 +81,11 @@ class ControllerEntry implements ControllerEntryContract
             );
         }
 
-        if (!method_exists($params['class'], $params['method'])) {
+        if (!method_exists(
+            $params['class'],
+            $params['method']
+        )
+        ) {
             throw new TException(
                 __CLASS__,
                 __METHOD__,
@@ -80,7 +94,10 @@ class ControllerEntry implements ControllerEntryContract
             );
         }
 
-        return new static($params['class'], $params['method']);
+        return new static(
+            $params['class'],
+            $params['method']
+        );
     }
 
     /**

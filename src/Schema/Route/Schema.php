@@ -1,9 +1,10 @@
 <?php
 
-namespace HighWay\Classes\RouteSchema;
+namespace HighWay\Schema\Route;
 
-use HighWay\Contracts\Schema\SchemaContract;
-use HighWay\Contracts\Schema\SchemaEntryContract;
+use HighWay\Schema\Route\Contracts\SchemaContract;
+use HighWay\Schema\Route\Contracts\SchemaEntryContract;
+use HighWay\Schema\Route\Entry\SchemaEntry;
 
 /**
  * Class Schema
@@ -57,6 +58,9 @@ class Schema implements SchemaContract
      */
     public function addSchemaEntry($schema)
     {
-        array_push($this->schemaEntry, $schema);
+        array_push(
+            $this->schemaEntry,
+            $schema
+        );
     }
 }

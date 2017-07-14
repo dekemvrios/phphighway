@@ -1,9 +1,9 @@
 <?php
 
-namespace HighWay\Abstractions;
+namespace HighWay;
 
-use HighWay\Contracts\RouteWrapperContract;
-use HighWay\Contracts\Schema\SchemaContract;
+use HighWay\Wrappers\RouteWrapperContract;
+use HighWay\Schema\Route\Contracts\SchemaContract;
 
 /**
  * Class HighWayAbstract
@@ -28,8 +28,10 @@ abstract class HighWayAbstract
      * @param RouteWrapperContract $wrapper
      * @param SchemaContract       $schema
      */
-    protected function __construct($wrapper, $schema)
-    {
+    protected function __construct(
+        $wrapper,
+        $schema
+    ) {
         $this->setWrapper($wrapper);
         $this->setSchema($schema);
     }

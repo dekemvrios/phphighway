@@ -1,6 +1,6 @@
 <?php
 
-namespace HighWay\Contracts;
+namespace HighWay\Wrappers;
 
 use HighWay\Contracts\Schema\SchemaEntryContract;
 use HighWay\Contracts\Schema\SchemaContract;

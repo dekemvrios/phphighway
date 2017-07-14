@@ -1,6 +1,6 @@
 <?php
 
-namespace HighWay\Classes\SlimApp;
+namespace HighWay\Wrappers\SlimApp;
 
 /**
  * Class SlmiMiddleware

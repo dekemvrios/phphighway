@@ -1,9 +1,9 @@
 <?php
 
-namespace HighWay\Classes\RouteSchema;
+namespace HighWay\Schema\Route\Entry;
 
-use HighWay\Contracts\Schema\ControllerEntryContract;
-use HighWay\Contracts\Schema\RequestEntryContract;
+use HighWay\Schema\Route\Contracts\ControllerEntryContract;
+use HighWay\Schema\Route\Contracts\RequestEntryContract;
 use Solis\Breaker\TException;
 
 /**

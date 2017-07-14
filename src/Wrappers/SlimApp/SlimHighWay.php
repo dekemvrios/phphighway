@@ -1,9 +1,9 @@
 <?php
 
-namespace HighWay\Classes\SlimApp;
+namespace HighWay\Wrappers\SlimApp;
 
-use HighWay\Abstractions\HighWayAbstract;
-use HighWay\Classes\RouteSchema\Schema;
+use HighWay\HighWayAbstract;
+use HighWay\Schema\Route\Schema;
 use Solis\Breaker\TException;
 
 /**

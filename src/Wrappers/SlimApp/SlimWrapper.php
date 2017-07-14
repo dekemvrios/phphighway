@@ -1,10 +1,10 @@
 <?php
 
-namespace HighWay\Classes\SlimApp;
+namespace HighWay\Wrappers\SlimApp;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use HighWay\Contracts\Schema\SchemaEntryContract;
+use HighWay\Schema\Route\Contracts\SchemaEntryContract;
 use Slim\App;
 
 /**

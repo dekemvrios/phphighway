@@ -1,11 +1,11 @@
 <?php
 
-namespace HighWay\Contracts\Schema;
+namespace HighWay\Schema\Route\Contracts;
 
 /**
  * Class SchemaEntryContract
  *
- * @package HighWay\Contracts\Schema
+ * @package HighWay\Schema\Route\Contracts
  */
 interface SchemaEntryContract
 {

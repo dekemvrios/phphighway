@@ -1,11 +1,11 @@
 <?php
 
-namespace HighWay\Contracts\Schema;
+namespace HighWay\Schema\Route\Contracts;
 
 /**
  * Interface ResponseEntryContract
  *
- * @package HighWay\Contracts\Schema
+ * @package HighWay\Schema\Route\Contracts
  */
 interface ResponseEntryContract
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace HighWay\Classes\SlimApp;
+namespace HighWay\Wrappers\SlimApp;
 
-use HighWay\Classes\RouteSchema\Schema;
-use HighWay\Contracts\Schema\SchemaContract;
-use HighWay\Contracts\Schema\SchemaEntryContract;
-use HighWay\Contracts\RouteWrapperContract;
-use Slim\App;
+use HighWay\Schema\Route\Contracts\SchemaContract;
+use HighWay\Schema\Route\Contracts\SchemaEntryContract;
+use HighWay\Wrappers\RouteWrapperContract;
+use HighWay\Schema\Route\Schema;
 use Solis\Breaker\TException;
+use Slim\App;
 
 /**
  * Class RouteWrapper
@@ -37,11 +37,13 @@ class RouteWrapper implements RouteWrapperContract
     /**
      * RouteWrapper constructor.
      *
-     * @param App            $slim
+     * @param App $slim
      * @param SlimMiddleware $middleware
      */
-    protected function __construct($slim, $middleware = null)
-    {
+    protected function __construct(
+        $slim,
+        $middleware = null
+    ) {
         $this->setApp($slim);
         if (!empty($middleware)) {
             $this->setMiddleware($middleware);
@@ -56,14 +58,19 @@ class RouteWrapper implements RouteWrapperContract
      *
      * @return static
      */
-    public static function make($schema = null, $middleware = null)
-    {
+    public static function make(
+        $schema = null,
+        $middleware = null
+    ) {
 
         $aConfig = $GLOBALS['aConfig'];
 
         $app = !is_null($aConfig) ? new App(['settings' => $aConfig]) : new App();
 
-        $instance = new static($app, $middleware);
+        $instance = new static(
+            $app,
+            $middleware
+        );
 
         if (!empty($schema)) {
             $instance->compileRouteFromSchema($schema);
@@ -112,7 +119,10 @@ class RouteWrapper implements RouteWrapperContract
     public function compileRouteFromString($jsonSchema)
     {
 
-        $arraySchema = json_decode($jsonSchema, true);
+        $arraySchema = json_decode(
+            $jsonSchema,
+            true
+        );
         if (empty($arraySchema)) {
             throw new TException(
                 __CLASS__,
@@ -168,7 +178,11 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function post($route)
     {
-        SlimWrapper::___POST($this->getApp(), $route, $this->getMiddleware());
+        SlimWrapper::___POST(
+            $this->getApp(),
+            $route,
+            $this->getMiddleware()
+        );
     }
 
     /**
@@ -176,7 +190,11 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function delete($route)
     {
-        SlimWrapper::___POST($this->getApp(), $route, $this->getMiddleware());
+        SlimWrapper::___POST(
+            $this->getApp(),
+            $route,
+            $this->getMiddleware()
+        );
     }
 
     /**
@@ -184,7 +202,11 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function get($route)
     {
-        SlimWrapper::___GET($this->getApp(), $route, $this->getMiddleware());
+        SlimWrapper::___GET(
+            $this->getApp(),
+            $route,
+            $this->getMiddleware()
+        );
     }
 
     /**
@@ -192,6 +214,10 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function patch($route)
     {
-        SlimWrapper::___POST($this->getApp(), $route, $this->getMiddleware());
+        SlimWrapper::___POST(
+            $this->getApp(),
+            $route,
+            $this->getMiddleware()
+        );
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace HighWay\Classes\RouteSchema;
+namespace HighWay\Schema\Route\Entry;
 
-use HighWay\Contracts\Schema\RequestEntryContract;
-use HighWay\Contracts\Schema\ResponseEntryContract;
-use HighWay\Contracts\Schema\SchemaEntryContract;
+use HighWay\Schema\Route\Contracts\RequestEntryContract;
+use HighWay\Schema\Route\Contracts\ResponseEntryContract;
+use HighWay\Schema\Route\Contracts\SchemaEntryContract;
 use Solis\Breaker\TException;
 
 /**

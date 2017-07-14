@@ -2,8 +2,8 @@
 
 require '../vendor/autoload.php';
 
-use HighWay\Classes\SlimApp\SlimHighWay;
-use HighWay\Classes\SlimApp\SlimMiddleware;
+use HighWay\Wrappers\SlimApp\SlimHighWay;
+use HighWay\Wrappers\SlimApp\SlimMiddleware;
 use Solis\Breaker\TException;
 
 try {
