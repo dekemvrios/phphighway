@@ -38,18 +38,16 @@ Primeiramente é necessário definir um schema, representando as rotas a serem c
 ]
 ```
 
-Crie uma instancia da classe SimpleRoute e utilize o método estático build para vincular novas rotas/middleware a respectiva instancia
+Crie uma instancia da classe SlimHighWay e utilize o método estático make para vincular novas rotas a respectiva instancia
 
 ```
-use HighWay\Classes\SlimApp\SlimHighWay;
-
-$middleware = require_once 'src/Includes/middleware.php';
+use HighWay\Wrappers\SlimApp\SlimHighWay;
 
 $routes = json_decode(file_get_contents('src/Routes/sample.json'), true)
 
-$app = SlimHighWay::make($routes, $middleware);
+$app = SlimHighWay::make($routes);
 
 $app->run();
 ```
 
-O SimpleRoute será responsável por criar instâncias de rotas utilizadas pelo Slim Framework 3 de acordo com as especificações existentes no schema.
+O SlimHighWay será responsável por criar instâncias de rotas utilizadas pelo Slim Framework 3 de acordo com as especificações existentes no schema.

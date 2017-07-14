@@ -2,8 +2,8 @@
 
 namespace HighWay\Wrappers;
 
-use HighWay\Contracts\Schema\SchemaEntryContract;
-use HighWay\Contracts\Schema\SchemaContract;
+use HighWay\Schema\Route\Contracts\SchemaEntryContract;
+use HighWay\Schema\Route\Contracts\SchemaContract;
 use Solis\Breaker\TException;
 
 /**
