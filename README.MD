@@ -44,15 +44,13 @@ Crie uma instancia da classe SlimHighWay e utilize o método estático make para
 use HighWay\Wrappers\SlimApp\SlimHighWay;
 
 $routes = json_decode(
-    file_get_contents('src/Routes/sample.json'),
+    file_get_contents('path/to/Route.json'),
     true
 );
 
 $app = SlimHighWay::make(
     $routes
 );
-
-$app->run();
 
 $app->run();
 ```
