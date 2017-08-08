@@ -42,6 +42,12 @@ class SchemaEntry implements SchemaEntryContract
         $this->setResponseEntry($responseEntry);
     }
 
+    /**
+     * @param $params
+     *
+     * @return static
+     * @throws TException
+     */
     public static function make($params)
     {
         if (!array_key_exists('request', $params)) {

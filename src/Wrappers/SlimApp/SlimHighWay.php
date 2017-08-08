@@ -27,6 +27,15 @@ class SlimHighWay extends HighWayAbstract
     {
         $schema = null;
         if (!empty($routes)) {
+            if (!is_array($routes)) {
+                throw new TException(
+                    __CLASS__,
+                    __METHOD__,
+                    'supplied route is not of expected type array',
+                    400
+                );
+            }
+
             $schema = Schema::make($routes);
             if (empty($schema)) {
                 throw new TException(

@@ -27,11 +27,20 @@ class Schema implements SchemaContract
     public static function make($routes)
     {
 
-        $instance = new static();
-        foreach ($routes as $route) {
-            $schemaEntry = SchemaEntry::make($route);
+        $routeGroup = count(
+            array_filter(
+                array_keys($routes[0]),
+                'is_string'
+            )
+        ) > 0 ? [$routes] : $routes;
 
-            $instance->addSchemaEntry($schemaEntry);
+        $instance = new static();
+        foreach ($routeGroup as $routeEntry) {
+            foreach ($routeEntry as $route) {
+                $schemaEntry = SchemaEntry::make($route);
+
+                $instance->addSchemaEntry($schemaEntry);
+            }
         }
 
         return $instance;

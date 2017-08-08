@@ -1,0 +1,42 @@
+[
+  {
+    "request": {
+      "uri": "/sample/get_2/",
+      "method": "GET",
+      "controller": {
+        "class": "Sample\\Classes\\Sample",
+        "method": "find"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/sample/put_2/",
+      "method": "POST",
+      "controller": {
+        "class": "Sample\\Classes\\Sample",
+        "method": "put"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/sample/del_2/",
+      "method": "DELETE",
+      "controller": {
+        "class": "Sample\\Classes\\Sample",
+        "method": "del"
+      }
+    },
+    "middleware": "auth",
+    "response": {
+      "sType": "withJson"
+    }
+  }
+]

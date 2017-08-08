@@ -9,14 +9,9 @@ try {
 
     include_once 'src/Includes/config.php';
 
-    $routes = json_decode(
-        file_get_contents('src/Routes/sample.json'),
-        true
-    );
+    $routes = include_once 'src/auxRotas.php';
 
-    $app = SlimHighWay::make(
-        $routes
-    );
+    $app = SlimHighWay::make($routes);
 
     $app->run();
 
