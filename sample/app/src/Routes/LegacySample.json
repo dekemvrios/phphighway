@@ -1,0 +1,54 @@
+[
+  {
+    "request": {
+      "uri": "/legacy/getAll/",
+      "method": "GET",
+      "controller": {
+        "class": "Sample\\Classes\\Legacy\\LegacySample",
+        "method": "listAll"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/legacy/getOne/",
+      "method": "GET",
+      "controller": {
+        "class": "Sample\\Classes\\Legacy\\LegacySample",
+        "method": "findOne"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/legacy/deleteOne/",
+      "method": "POST",
+      "controller": {
+        "class": "Sample\\Classes\\Legacy\\LegacySample",
+        "method": "delete"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/legacy/updateOne/",
+      "method": "POST",
+      "controller": {
+        "class": "Sample\\Classes\\Legacy\\LegacySample",
+        "method": "update"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  }
+]

@@ -1,26 +1,18 @@
 <?php
 
-$url = "http://localhost/solis/phphighway/sample/sample/del/";
+$id = 1;
 
-$data = [
-    "randData" => uniqid(rand(), true),
-];
-
-// Data JSON
-$dataJson = json_encode($data);
+$url = "http://localhost/rest/{$id}";
 
 // set up the curl resource
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 curl_setopt($ch, CURLOPT_HEADER, false);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Authorization: 1471036882595f79abf16587.70188608',
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen($dataJson),
+    'Content-Type: application/json'
 ]);
 
 // execute the request

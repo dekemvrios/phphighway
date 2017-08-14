@@ -1,6 +1,6 @@
 <?php
 
-$url = "http://localhost/solis/phphighway/sample/sample/put/";
+$url = "http://localhost/legacy/deleteOne/";
 
 $data = [
     "randData" => uniqid(rand(), true),

@@ -1,6 +1,8 @@
 <?php
 
-$url = "http://localhost/solis/phphighway/sample/sample/get/";
+$id = 1;
+
+$url = "http://localhost/legacy/getOne/?recordId={$id}";
 
 // set up the curl resource
 $rCh = curl_init();

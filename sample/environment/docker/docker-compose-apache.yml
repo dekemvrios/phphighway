@@ -1,0 +1,14 @@
+version: '3'
+services:
+  phphighway:
+    image: marcuswubi/docker-php-debug:7
+    volumes:
+      - ${APP_ROOT}:/var/www/html/
+      - ${APACHE_CONF}:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - 80:80
+    environment:
+      - APACHE_SERVER_NAME=localhost
+      - TZ=America/Sao_Paulo
+      - XDEBUG_CONFIG=remote_host=${IP}
+      - DEBUG=${DEBUG:-0}

@@ -19,4 +19,19 @@ interface ResponseEntryContract
      * @param string $type
      */
     public function setType($type);
+
+    /**
+     * @param HeadersEntryContract $header
+     */
+    public function addHeader($header);
+
+    /**
+     * @return HeadersEntryContract[]
+     */
+    public function getHeaders();
+
+    /**
+     * @param HeadersEntryContract[] $headers
+     */
+    public function setHeaders($headers);
 }

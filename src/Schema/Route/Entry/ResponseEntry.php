@@ -19,6 +19,11 @@ class ResponseEntry implements ResponseEntryContract
     private $type;
 
     /**
+     * @var HeadersEntry[]
+     */
+    private $headers = [];
+
+    /**
      * ResponseEntry constructor.
      *
      * @param string $type
@@ -36,15 +41,34 @@ class ResponseEntry implements ResponseEntryContract
      */
     public static function make($params)
     {
-        if (!array_key_exists('sType', $params)) {
+        if (!array_key_exists(
+            'sType',
+            $params
+        )
+        ) {
             throw new TException(
                 __CLASS__,
                 __METHOD__,
                 'sType entry has not been found creating controller schema',
-                400);
+                400
+            );
         }
 
-        return new static($params['sType']);
+        $instance = new static($params['sType']);
+        if (array_key_exists(
+            'headers',
+            $params
+        )) {
+            $headers = !is_array(
+                $params['headers']
+            ) ? [$params['headers']] : $params['headers'];
+
+            foreach ($headers as $header) {
+                $instance->addHeader(HeadersEntry::response($header));
+            }
+        }
+
+        return $instance;
     }
 
     /**
@@ -61,5 +85,29 @@ class ResponseEntry implements ResponseEntryContract
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @param HeadersEntry $header
+     */
+    public function addHeader($header)
+    {
+        $this->headers[] = $header;
+    }
+
+    /**
+     * @return HeadersEntry[]
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param HeadersEntry[] $headers
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
     }
 }
