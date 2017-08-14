@@ -1,15 +1,15 @@
 <?php
 
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use HighWay\Wrappers\SlimApp\SlimHighWay;
 use Solis\Breaker\TException;
 
 try {
 
-    include_once 'src/Includes/config.php';
+    include_once '../src/Includes/config.php';
 
-    $routes = include_once 'src/auxRotas.php';
+    $routes = include_once '../src/auxRotas.php';
 
     $app = SlimHighWay::make($routes);
 

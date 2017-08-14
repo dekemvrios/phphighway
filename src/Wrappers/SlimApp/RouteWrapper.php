@@ -4,8 +4,13 @@ namespace HighWay\Wrappers\SlimApp;
 
 use HighWay\Schema\Route\Contracts\SchemaContract;
 use HighWay\Schema\Route\Contracts\SchemaEntryContract;
+use HighWay\Wrappers\SlimApp\HttpDelete\DeleteBuilder;
+use HighWay\Wrappers\SlimApp\HttpGet\GetBuilder;
 use HighWay\Wrappers\RouteWrapperContract;
 use HighWay\Schema\Route\Schema;
+use HighWay\Wrappers\SlimApp\HttpPatch\PatchBuilder;
+use HighWay\Wrappers\SlimApp\HttpPost\PostBuilder;
+use HighWay\Wrappers\SlimApp\HttpPut\PutBuilder;
 use Solis\Breaker\TException;
 use Slim\App;
 
@@ -27,17 +32,34 @@ class RouteWrapper implements RouteWrapperContract
     protected $middleware;
 
     /**
-     * run
+     * @var GetBuilder
      */
-    public function run()
-    {
-        $this->app->run();
-    }
+    protected $httpGetBuilder;
+
+    /**
+     * @var PostBuilder
+     */
+    protected $httpPostBuilder;
+
+    /**
+     * @var DeleteBuilder
+     */
+    protected $httpDeleteBuilder;
+
+    /**
+     * @var PutBuilder
+     */
+    protected $httpPutBuilder;
+
+    /**
+     * @var PatchBuilder
+     */
+    protected $httpPatchBuilder;
 
     /**
      * RouteWrapper constructor.
      *
-     * @param App $slim
+     * @param App            $slim
      * @param SlimMiddleware $middleware
      */
     protected function __construct(
@@ -48,6 +70,11 @@ class RouteWrapper implements RouteWrapperContract
         if (!empty($middleware)) {
             $this->setMiddleware($middleware);
         }
+        $this->httpGetBuilder = new GetBuilder();
+        $this->httpPostBuilder = new PostBuilder();
+        $this->httpDeleteBuilder = new DeleteBuilder();
+        $this->httpPutBuilder = new PutBuilder();
+        $this->httpPatchBuilder = new PatchBuilder();
     }
 
     /**
@@ -77,6 +104,14 @@ class RouteWrapper implements RouteWrapperContract
         }
 
         return $instance;
+    }
+
+    /**
+     * run
+     */
+    public function run()
+    {
+        $this->app->run();
     }
 
     /**
@@ -161,6 +196,10 @@ class RouteWrapper implements RouteWrapperContract
                     $this->post($route);
 
                     break;
+                case 'PUT':
+                    $this->put($route);
+
+                    break;
                 case 'DELETE':
                     $this->delete($route);
 
@@ -176,9 +215,33 @@ class RouteWrapper implements RouteWrapperContract
     /**
      * @param SchemaEntryContract $route
      */
+    public function get($route)
+    {
+        $this->httpGetBuilder->get(
+            $this->getApp(),
+            $route,
+            $this->getMiddleware()
+        );
+    }
+
+    /**
+     * @param SchemaEntryContract $route
+     */
     public function post($route)
     {
-        SlimWrapper::___POST(
+        $this->httpPostBuilder->post(
+            $this->getApp(),
+            $route,
+            $this->getMiddleware()
+        );
+    }
+
+    /**
+     * @param SchemaEntryContract $route
+     */
+    public function put($route)
+    {
+        $this->httpPutBuilder->put(
             $this->getApp(),
             $route,
             $this->getMiddleware()
@@ -190,34 +253,50 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function delete($route)
     {
-        SlimWrapper::___POST(
-            $this->getApp(),
-            $route,
-            $this->getMiddleware()
-        );
+        switch ($route->getRequestEntry()->getType()) {
+            case 'legacy' :
+                $this->httpPostBuilder->post(
+                    $this->getApp(),
+                    $route,
+                    $this->getMiddleware()
+                );
+
+                break;
+            case 'rest':
+                $this->httpDeleteBuilder->delete(
+                    $this->getApp(),
+                    $route,
+                    $this->getMiddleware()
+                );
+
+                break;
+        }
     }
 
     /**
      * @param SchemaEntryContract $route
-     */
-    public function get($route)
-    {
-        SlimWrapper::___GET(
-            $this->getApp(),
-            $route,
-            $this->getMiddleware()
-        );
-    }
-
-    /**
-     * @param SchemaEntryContract $route
+     *
+     * @deprecated método patch será removido na versão v1.0.0 em favor do método post
      */
     public function patch($route)
     {
-        SlimWrapper::___POST(
-            $this->getApp(),
-            $route,
-            $this->getMiddleware()
-        );
+        switch ($route->getRequestEntry()->getType()) {
+            case 'legacy' :
+                $this->httpPostBuilder->post(
+                    $this->getApp(),
+                    $route,
+                    $this->getMiddleware()
+                );
+
+                break;
+            case 'rest':
+                $this->httpPatchBuilder->patch(
+                    $this->getApp(),
+                    $route,
+                    $this->getMiddleware()
+                );
+
+                break;
+        }
     }
 }

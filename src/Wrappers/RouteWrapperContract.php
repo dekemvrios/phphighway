@@ -43,6 +43,11 @@ interface RouteWrapperContract
     /**
      * @param SchemaEntryContract $route
      */
+    public function put($route);
+
+    /**
+     * @param SchemaEntryContract $route
+     */
     public function patch($route);
 
     /**

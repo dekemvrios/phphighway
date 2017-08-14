@@ -29,4 +29,14 @@ interface ControllerEntryContract
      * @param string $method
      */
     public function setMethod($method);
+
+    /**
+     * @return string
+     */
+    public function getConstructor();
+
+    /**
+     * @param string $constructor
+     */
+    public function setConstructor($constructor);
 }

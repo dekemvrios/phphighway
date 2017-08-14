@@ -24,6 +24,11 @@ class ControllerEntry implements ControllerEntryContract
     private $method;
 
     /**
+     * @var string
+     */
+    private $constructor = 'default';
+
+    /**
      * ControllerEntry constructor.
      *
      * @param $class
@@ -94,10 +99,15 @@ class ControllerEntry implements ControllerEntryContract
             );
         }
 
-        return new static(
+        $instance = new static(
             $params['class'],
             $params['method']
         );
+        if (array_key_exists('constructor', $params)) {
+            $instance->setConstructor($params['constructor']);
+        }
+
+        return $instance;
     }
 
     /**
@@ -130,5 +140,21 @@ class ControllerEntry implements ControllerEntryContract
     public function setMethod($method)
     {
         $this->method = $method;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConstructor()
+    {
+        return $this->constructor;
+    }
+
+    /**
+     * @param string $constructor
+     */
+    public function setConstructor($constructor)
+    {
+        $this->constructor = $constructor;
     }
 }

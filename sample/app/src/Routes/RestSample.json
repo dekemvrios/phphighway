@@ -1,0 +1,114 @@
+[
+  {
+    "request": {
+      "uri": "/rest",
+      "method": "GET",
+      "type": "rest",
+      "controller": {
+        "class": "Sample\\Classes\\Rest\\RestSample",
+        "method": "listAll"
+      }
+    },
+    "response": {
+      "sType": "withJson",
+      "headers": [
+        {
+          "name": "Status-Code",
+          "expected": "statusCode"
+        },
+        {
+          "name": "X-Total-Content",
+          "expected": "totalContent"
+        },
+        {
+          "name": "X-Date-Time",
+          "expected": "dateTime"
+        },
+        {
+          "name": "Access-Control-Expose-Headers",
+          "useStatic": "X-Date-Time, X-Total-Count"
+        }
+      ]
+    }
+  },
+  {
+    "request": {
+      "uri": "/rest/{recordId}",
+      "method": "GET",
+      "type": "rest",
+      "arguments": [
+        {
+          "name": "recordId"
+        }
+      ],
+      "controller": {
+        "class": "Sample\\Classes\\Rest\\RestSample",
+        "method": "findOne"
+      }
+    },
+    "response": {
+      "sType": "withJson",
+      "headers": [
+        {
+          "name": "Status-Code",
+          "expected": "statusCode"
+        },
+        {
+          "name": "X-Total-Content",
+          "expected": "totalContent"
+        },
+        {
+          "name": "X-Date-Time",
+          "expected": "dateTime"
+        },
+        {
+          "name": "Access-Control-Expose-Headers",
+          "useStatic": "X-Date-Time, X-Total-Count"
+        }
+      ]
+    }
+  },
+  {
+    "request": {
+      "uri": "/rest/{recordId}",
+      "method": "DELETE",
+      "type": "rest",
+      "arguments": [
+        {
+          "name": "recordId"
+        }
+      ],
+      "controller": {
+        "class": "Sample\\Classes\\Rest\\RestSample",
+        "method": "delete"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  },
+  {
+    "request": {
+      "uri": "/rest/{recordId}",
+      "method": "PUT",
+      "type": "rest",
+      "headers": [
+        {
+          "name": "Authorization"
+        }
+      ],
+      "arguments": [
+        {
+          "name": "recordId"
+        }
+      ],
+      "controller": {
+        "class": "Sample\\Classes\\Rest\\RestSample",
+        "method": "update"
+      }
+    },
+    "response": {
+      "sType": "withJson"
+    }
+  }
+]

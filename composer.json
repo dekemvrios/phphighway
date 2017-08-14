@@ -19,7 +19,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Sample\\": "sample/src/"
+      "Sample\\": "sample/app/src/"
     }
   },
   "require": {
