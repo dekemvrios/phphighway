@@ -8,6 +8,7 @@ use HighWay\Wrappers\SlimApp\HttpDelete\DeleteBuilder;
 use HighWay\Wrappers\SlimApp\HttpGet\GetBuilder;
 use HighWay\Wrappers\RouteWrapperContract;
 use HighWay\Schema\Route\Schema;
+use HighWay\Wrappers\SlimApp\HttpPatch\PatchBuilder;
 use HighWay\Wrappers\SlimApp\HttpPost\PostBuilder;
 use HighWay\Wrappers\SlimApp\HttpPut\PutBuilder;
 use Solis\Breaker\TException;
@@ -51,6 +52,11 @@ class RouteWrapper implements RouteWrapperContract
     protected $httpPutBuilder;
 
     /**
+     * @var PatchBuilder
+     */
+    protected $httpPatchBuilder;
+
+    /**
      * RouteWrapper constructor.
      *
      * @param App            $slim
@@ -68,6 +74,7 @@ class RouteWrapper implements RouteWrapperContract
         $this->httpPostBuilder = new PostBuilder();
         $this->httpDeleteBuilder = new DeleteBuilder();
         $this->httpPutBuilder = new PutBuilder();
+        $this->httpPatchBuilder = new PatchBuilder();
     }
 
     /**
@@ -273,10 +280,23 @@ class RouteWrapper implements RouteWrapperContract
      */
     public function patch($route)
     {
-        $this->httpPostBuilder->post(
-            $this->getApp(),
-            $route,
-            $this->getMiddleware()
-        );
+        switch ($route->getRequestEntry()->getType()) {
+            case 'legacy' :
+                $this->httpPostBuilder->post(
+                    $this->getApp(),
+                    $route,
+                    $this->getMiddleware()
+                );
+
+                break;
+            case 'rest':
+                $this->httpPatchBuilder->patch(
+                    $this->getApp(),
+                    $route,
+                    $this->getMiddleware()
+                );
+
+                break;
+        }
     }
 }

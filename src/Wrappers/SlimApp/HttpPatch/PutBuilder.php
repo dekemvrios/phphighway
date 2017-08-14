@@ -1,6 +1,6 @@
 <?php
 
-namespace HighWay\Wrappers\SlimApp\HttpPut;
+namespace HighWay\Wrappers\SlimApp\HttpPatch;
 
 use HighWay\Schema\Route\Contracts\SchemaEntryContract;
 use HighWay\Wrappers\SlimApp\Helpers\SchemaResponse;
@@ -15,7 +15,7 @@ use Slim\App;
  *
  * @package HighWay\Wrappers\SlimApp\HttpPost
  */
-class PutBuilder
+class PatchBuilder
 {
 
     /**
@@ -23,7 +23,7 @@ class PutBuilder
      * @param SchemaEntryContract $route
      * @param SlimMiddleware|null $middleware
      */
-    public function put(
+    public function patch(
         &$App,
         $route,
         $middleware = null
@@ -41,10 +41,10 @@ class PutBuilder
             $method = $middleware->getEntry($route->getMiddleware()[0]);
         }
 
-        empty($method) ? $App->put(
+        empty($method) ? $App->patch(
             $route->getRequestEntry()->getUri(),
             $closure
-        ) : $App->put(
+        ) : $App->patch(
             $route->getRequestEntry()->getUri(),
             $closure
         )->add($method);
