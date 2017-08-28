@@ -1,11 +1,14 @@
 <?php
 
-namespace HighWay\Contracts;
+namespace HighWay\Action;
+
+use HighWay\Request\RequestContract;
+use HighWay\Response\ResponseContract;
 
 /**
  * Interface ActionContract
  *
- * @package HighWay\Contracts
+ * @package HighWay\Action
  */
 interface ActionContract
 {
